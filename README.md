@@ -1,4 +1,4 @@
-# [Проектная работа Mesto](https://wskymike.github.io/mesto/) - портирование проекта на Реакт | Яндекс.Практимум
+# [Проектная работа Mesto](https://wskymike.github.io/mesto-react/) - портирование проекта на Реакт | Яндекс.Практимум
 
 Mesto - это импортозамещенный инстаграм. Сверстана по  [макету на Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4) с адаптацией под мобильные устройства.
 <br>
