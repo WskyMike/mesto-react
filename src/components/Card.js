@@ -1,13 +1,20 @@
-function Card({ card, onCardClick }) {
+function Card({ card, onCardClick, onCardDelete  }) {
+
   function handleCardClick() {
     onCardClick(card);
   }
+
+  function handleDeleteClick() {
+    onCardDelete(card);
+  }
+
   return (
     <li className="elements__card">
       <button
         type="button"
         className="elements__trash"
         aria-label="Удалить карточку"
+        onClick={ handleDeleteClick }
       ></button>
       <div className="elements__picture-container">
         <img

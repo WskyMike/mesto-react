@@ -17,6 +17,8 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   // FULLSCREEN
   const [selectedCard, setSelectedCard] = useState(null);
+  // CARD_DELETE
+  const [ isDeleteCardPopupOpen, setIsDeleteCardPopupOpen ] = useState(false);
 
   // Обработчик АВАТАР
   function handleEditAvatarClick() {
@@ -36,10 +38,15 @@ function App() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setSelectedCard(null);
+    setIsDeleteCardPopupOpen(false);
   }
   // Клик на карточку
   function handleCardClick(card) {
     setSelectedCard(card);
+  }
+
+  function handleDeleteCardClick(card) {
+  setIsDeleteCardPopupOpen(true);
   }
 
   return (
@@ -50,6 +57,7 @@ function App() {
         onEditProfile={handleEditProfileClick}
         onAddPlace={handleAddPlaceClick}
         onCardClick={handleCardClick}
+        onCardDelete={ handleDeleteCardClick }
       />
       <Footer />
 
@@ -59,6 +67,7 @@ function App() {
         title="Редактировать профиль"
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
+        btnText="Сохранить"
       >
         <div className="popup__input-container">
           <input
@@ -94,6 +103,7 @@ function App() {
         title="Новое место"
         isOpen={isAddPlacePopupOpen}
         onClose={closeAllPopups}
+        btnText="Сохранить"
       >
         <div className="popup__input-container">
           <input
@@ -127,6 +137,7 @@ function App() {
         title="Обновить aватар"
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
+        btnText="Сохранить"
       >
         <div className="popup__input-container">
           <input
@@ -143,26 +154,13 @@ function App() {
       {/* POPUP FULSCREEN  */}
       <ImagePopup card={selectedCard} onClose={closeAllPopups} />
       {/* POPUP ARE_YOU_SURE  */}
-      <div className="popup popup_style_delete">
-        <div className="popup__container">
-          <h2 className="popup__title popup__title_style_delete">
-            Вы уверены?
-          </h2>
-          <button
-            className="popup__close popup__close_type_photo"
-            type="button"
-            aria-label="Закрыть окно"
-          ></button>
-          <form className="popup__form" name="delete-card" method="get">
-            <button
-              className="popup__submit popup__submit_style_delete"
-              type="submit"
-            >
-              Да
-            </button>
-          </form>
-        </div>
-      </div>
+      <PopupWithForm
+        name="delete-card"
+        title="Вы уверены?"
+        isOpen={isDeleteCardPopupOpen}
+        onClose={closeAllPopups}
+        btnText="Да"
+      ></PopupWithForm>
     </div>
   );
 }
