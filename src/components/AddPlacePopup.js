@@ -21,6 +21,11 @@ function AddPlacePopup(props) {
         link: link,
       });
     }
+    // Сбросим форму при открытии
+    React.useEffect(() => {
+      setName('');
+      setLink('');
+    }, [props.isOpen]); 
 
 
   return (
@@ -45,6 +50,7 @@ function AddPlacePopup(props) {
           placeholder="Название"
           pattern="^[a-zA-Zа-яА-я-\s]+$"
           onChange={handleNameChange}
+          value={name ?? ''}
         />
         <span className="title-photo-input-error popup__input-error"></span>
       </div>
@@ -57,6 +63,8 @@ function AddPlacePopup(props) {
           required
           placeholder="Ссылка на картинку"
           onChange={handleLinkChange}
+          value={link ?? ''}
+          // Благодарю за ревью !
         />
         <span className="link-input-error popup__input-error"></span>
       </div>
